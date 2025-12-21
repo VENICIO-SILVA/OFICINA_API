@@ -3,8 +3,11 @@ package com.vini.oficina.dto.request;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+//Dto valida toda informação que ira vir do usuario
+//antes de passar para o service e persistir no banco
 public class AdministradoresRequestDto {
 
+    @NotBlank()
     private String nome;
 
     private String telefone;
