@@ -15,8 +15,11 @@ public class AdministradoresController {
     @Autowired
     private AdministradoresService administradoresService;
 
-    @PostMapping("/NovoAdministrador")
+    @PostMapping("/NovoAdministrador")                            //@Valid ativa as validações do DTO
+                                                                    //RequestBody diz que recebe JSON inseridor no corpo da requisição ou seja dados via JSON
     public ResponseEntity<Administradores> CadastrarAdministrador(@Valid @RequestBody AdministradoresRequestDto dto) {
+        //As informações chegam Atraves da requisição o DTO recebe ela no parametro acima "dto" roda toda verificação @valid
+        //Pós verificação e chamado o service.cadastrar passadno "dto" como parametro onde ele vai se tornar dados para o banco atraves da classe de serviço
         Administradores adm = administradoresService.CadastrarAdministrador(dto);
 
         return ResponseEntity.ok(adm);
