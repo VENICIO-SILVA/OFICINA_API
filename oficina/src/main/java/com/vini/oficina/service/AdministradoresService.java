@@ -13,8 +13,13 @@ public class AdministradoresService {
     @Autowired
     private AdministradoresRepositorie administradoresRepositorie;
 
+                                                //classe de serviço recebeu os dados que chegaram atraves da requisição "NovoAdministrador"
+                                                //Transforma os Dados do "dto" Em "Entitys" apartir da linha 25
+                                                // e persisti no banco da dados
     public Administradores CadastrarAdministrador(AdministradoresRequestDto dto) {
         if (administradoresRepositorie.existsByEmail(dto.getEmail())) {
+            //verifica caso exista um email ja cadastrado
+            //evita Usuarios duplicados
             System.out.println("Este email ja existe");
         }
 
@@ -26,10 +31,11 @@ public class AdministradoresService {
         adm.setTelefone(dto.getTelefone());
         adm.setCargo(dto.getCargo());
 
+        //Seta o dia/hora de criação do Usuario
         Timestamp agora = new Timestamp(System.currentTimeMillis());
 
         adm.setData_criacao(agora);
-        adm.setData_atualizacao(agora);
+        //todo Criar Função separada para Atualização de Dados setdataAtualização
 
 
         return administradoresRepositorie.save(adm);
