@@ -2,6 +2,7 @@ package com.vini.oficina.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jdk.jfr.Name;
 import org.hibernate.validator.constraints.br.CPF;
 import java.sql.Timestamp;
 
@@ -16,7 +17,7 @@ public class ClientesRequestDTO {
     private String email;
 
     @NotBlank
-    @CPF
+    @CPF(message = "Insira um cpf valido contendo apenas 11 caracteres")
     private String cpf;
 
     @NotBlank
