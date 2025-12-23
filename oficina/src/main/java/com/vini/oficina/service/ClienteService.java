@@ -29,7 +29,7 @@ public class ClienteService {
 
         cliente.setData_cadastro(HoraAtual);
 
-         return clienteRepositorie.save(cliente);
+        return clienteRepositorie.save(cliente);
     }
 
 
