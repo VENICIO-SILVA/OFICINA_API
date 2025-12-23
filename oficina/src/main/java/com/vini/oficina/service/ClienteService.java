@@ -31,4 +31,15 @@ public class ClienteService {
 
          return clienteRepositorie.save(cliente);
     }
+
+
+    public Clientes ObterClientePorId(int id) {
+        return clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao Encontrado"));
+    }
+
+    public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto){
+        Clientes clienteExistente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
+        clienteExistente.setCpf(dto.getCpf());
+        return clienteExistente;
+    }
 }

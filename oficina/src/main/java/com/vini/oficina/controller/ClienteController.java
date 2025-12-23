@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/Cliente")
 public class ClienteController {
@@ -17,6 +19,19 @@ public class ClienteController {
     @PostMapping("/CadastrarCliente")
     public ResponseEntity<Clientes> CadastrarCliente(@Valid @RequestBody ClientesRequestDTO dto) {
         Clientes cliente = clienteService.CadastrarCliente(dto);
+
+        return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping("ObterClientePorID/{id}")
+    public ResponseEntity<Clientes> ObterClientePorId(@Valid @PathVariable int id){
+        Clientes clientes = clienteService.ObterClientePorId(id);
+        return ResponseEntity.ok(clientes);
+    }
+
+    @PatchMapping("/AlterarDadosCliente/{id}")
+    public ResponseEntity<Clientes> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
+        Clientes cliente = clienteService.AlterarClientePorID(id, dto);
 
         return ResponseEntity.ok(cliente);
     }
