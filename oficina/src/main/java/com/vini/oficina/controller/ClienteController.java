@@ -35,4 +35,11 @@ public class ClienteController {
 
         return ResponseEntity.ok(cliente);
     }
+
+    @DeleteMapping("/ApagarCliente/{id}")
+    public ResponseEntity<Clientes> ApagarCliente(@PathVariable int id, ClientesRequestDTO dto){
+        Clientes clientes = clienteService.ApagarClientePorID(id,dto);
+
+        return ResponseEntity.ok(clientes);
+    }
 }
