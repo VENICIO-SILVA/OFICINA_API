@@ -20,7 +20,6 @@ public class ClientesRequestDTO {
     @CPF(message = "Insira um cpf valido contendo apenas 11 caracteres")
     private String cpf;
 
-    @NotBlank
     private String telefone;
 
     private String endereco;
