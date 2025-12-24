@@ -7,14 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Service
 public class ClienteService {
     @Autowired
     private ClienteRepositorie clienteRepositorie;
 
-    public Clientes CadastrarCliente(ClientesRequestDTO dto){
-        if (clienteRepositorie.existsByEmail(dto.getEmail())){
+    public Clientes CadastrarCliente(ClientesRequestDTO dto) {
+        if (clienteRepositorie.existsByEmail(dto.getEmail())) {
             System.out.println("Email ja Existente");
         }
         Clientes cliente = new Clientes();
@@ -37,9 +39,24 @@ public class ClienteService {
         return clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao Encontrado"));
     }
 
-    public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto){
+    public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto) {
         Clientes clienteExistente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
+        clienteExistente.setNome(dto.getNome());
+        clienteExistente.setEmail(dto.getEmail());
         clienteExistente.setCpf(dto.getCpf());
+        clienteExistente.setTelefone(dto.getTelefone());
+        clienteExistente.setEndereco(dto.getEndereco());
+        LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+        clienteExistente.setData_atualizacao(Timestamp.valueOf(agora));
+
+        clienteRepositorie.save(clienteExistente);
         return clienteExistente;
+    }
+
+    public Clientes ApagarClientePorID(int id, ClientesRequestDTO dto) {
+        Clientes DeletCliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente Nao existe"));
+        clienteRepositorie.delete(DeletCliente);
+
+        return DeletCliente;
     }
 }
