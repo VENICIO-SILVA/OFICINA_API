@@ -2,6 +2,8 @@ package com.vini.oficina.model.entitys;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 public class Carros {
 
@@ -23,9 +25,31 @@ public class Carros {
     @JoinColumn(name = "id_cliente")
     private Clientes clientes;
 
+    @Column
+    private Timestamp Data_Cadastro;
+    @Column()
+    private Timestamp Data_Atualizacao;
+
     public Clientes getClientes() {
         return clientes;
     }
+
+    public Timestamp getData_Cadastro() {
+        return Data_Cadastro;
+    }
+
+    public void setData_Cadastro(Timestamp data_Cadastro) {
+        Data_Cadastro = data_Cadastro;
+    }
+
+    public Timestamp getData_Atualizacao() {
+        return Data_Atualizacao;
+    }
+
+    public void setData_Atualizacao(Timestamp data_Atualizacao) {
+        Data_Atualizacao = data_Atualizacao;
+    }
+
 
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
