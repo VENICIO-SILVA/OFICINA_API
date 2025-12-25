@@ -1,9 +1,8 @@
 package com.vini.oficina.model.entitys;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 
 @Entity
@@ -17,12 +16,21 @@ public class Clientes {
 
     private String email;
 
-    @Column(length = 11,unique = true,nullable = false)
+    @Column(length = 11, unique = true, nullable = false)
     private String cpf;
 
     private String telefone;
 
     private String endereco;
+
+
+    public Timestamp getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public Timestamp getData_atualizacao() {
+        return data_atualizacao;
+    }
 
     private Timestamp data_cadastro;
 
@@ -83,5 +91,4 @@ public class Clientes {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
 }
