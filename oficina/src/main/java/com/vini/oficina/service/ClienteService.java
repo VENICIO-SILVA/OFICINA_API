@@ -43,7 +43,6 @@ public class ClienteService {
     public Clientes ObterClientePorId(int id) {
         Clientes cliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao Encontrado"));
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Nenhum carro vinculado ao cliente"));
-        cliente.getCarros(carros);
 
         return cliente;
     }
