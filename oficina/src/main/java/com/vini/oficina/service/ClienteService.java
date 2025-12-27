@@ -1,8 +1,7 @@
 package com.vini.oficina.service;
 
 import com.vini.oficina.dto.request.ClientesRequestDTO;
-import com.vini.oficina.model.entitys.Carros;
-import com.vini.oficina.model.entitys.Clientes;
+import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.repository.CarrosRepositorie;
 import com.vini.oficina.repository.ClienteRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +38,17 @@ public class ClienteService {
         return clienteRepositorie.save(cliente);
     }
 
-    //todo implementar logica para consultar os dados do carro vinculado ao id do cliente
+    //todo corrigir LAZY
     public Clientes ObterClientePorId(int id) {
-        Clientes cliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao Encontrado"));
-        Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Nenhum carro vinculado ao cliente"));
+        Clientes cliente = clienteRepositorie.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        cliente.getCarros().size();
 
         return cliente;
+
     }
 
-        public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto) {
+    public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto) {
         Clientes clienteExistente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
         clienteExistente.setNome(dto.getNome());
         clienteExistente.setEmail(dto.getEmail());
