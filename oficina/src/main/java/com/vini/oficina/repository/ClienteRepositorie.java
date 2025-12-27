@@ -1,6 +1,6 @@
 package com.vini.oficina.repository;
 
-import com.vini.oficina.model.entitys.Clientes;
+import com.vini.oficina.model.entities.Clientes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
