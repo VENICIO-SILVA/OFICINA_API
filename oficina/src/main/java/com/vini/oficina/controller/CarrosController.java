@@ -37,4 +37,11 @@ public class CarrosController {
         return ResponseEntity.ok(carros);
     }
 
+    @DeleteMapping("/ApagarCarro/{id}")
+    public ResponseEntity<Void> DeletarCarro(@PathVariable int id,  CarrosRequestDTO dto){
+        carrosService.DeletarCarro(id, dto);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
