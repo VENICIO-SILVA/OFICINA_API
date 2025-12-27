@@ -16,7 +16,6 @@ public class CarrosRequestDTO {
 
     @NotBlank(message = "Obrigatorio")
     private String placa;
-
     public int getId() {
         return id;
     }
