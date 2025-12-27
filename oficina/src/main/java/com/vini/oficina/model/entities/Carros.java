@@ -27,6 +27,7 @@ public class Carros {
     @JsonBackReference//lado inverso ignorado
     private Clientes clientes;
 
+    //todo atualizar As data para LocalDatetime
     @Column(name = "Data_Cadastro")
     private Timestamp DataCadastro;
     @Column(name = "Data_Atualizacao")
