@@ -1,7 +1,7 @@
 package com.vini.oficina.service;
 
 import com.vini.oficina.dto.request.AdministradoresRequestDto;
-import com.vini.oficina.model.entitys.Administradores;
+import com.vini.oficina.model.entities.Administradores;
 import com.vini.oficina.repository.AdministradoresRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

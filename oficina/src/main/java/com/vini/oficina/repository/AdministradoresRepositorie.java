@@ -1,6 +1,6 @@
 package com.vini.oficina.repository;
 
-import com.vini.oficina.model.entitys.Administradores;
+import com.vini.oficina.model.entities.Administradores;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

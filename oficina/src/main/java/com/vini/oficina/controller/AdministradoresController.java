@@ -1,7 +1,7 @@
 package com.vini.oficina.controller;
 
 import com.vini.oficina.dto.request.AdministradoresRequestDto;
-import com.vini.oficina.model.entitys.Administradores;
+import com.vini.oficina.model.entities.Administradores;
 import com.vini.oficina.service.AdministradoresService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +25,6 @@ public class AdministradoresController {
 
         return ResponseEntity.ok(adm);
     }
+    //todo criar get adm para amostra de usuario logado na tela!
 
 }
