@@ -1,5 +1,6 @@
-package com.vini.oficina.model.entitys;
+package com.vini.oficina.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -23,31 +24,32 @@ public class Carros {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cliente")
+    @JsonBackReference//lado inverso ignorado
     private Clientes clientes;
 
-    @Column
-    private Timestamp Data_Cadastro;
-    @Column()
-    private Timestamp Data_Atualizacao;
+    @Column(name = "Data_Cadastro")
+    private Timestamp DataCadastro;
+    @Column(name = "Data_Atualizacao")
+    private Timestamp DataAtualizacao;
 
     public Clientes getClientes() {
         return clientes;
     }
 
     public Timestamp getData_Cadastro() {
-        return Data_Cadastro;
+        return DataCadastro;
     }
 
     public void setData_Cadastro(Timestamp data_Cadastro) {
-        Data_Cadastro = data_Cadastro;
+        DataCadastro = data_Cadastro;
     }
 
     public Timestamp getData_Atualizacao() {
-        return Data_Atualizacao;
+        return DataAtualizacao;
     }
 
     public void setData_Atualizacao(Timestamp data_Atualizacao) {
-        Data_Atualizacao = data_Atualizacao;
+        DataAtualizacao = data_Atualizacao;
     }
 
 
