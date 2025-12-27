@@ -35,9 +35,9 @@ public class ClienteController {
     }
 
     @DeleteMapping("/ApagarCliente/{id}")
-    public ResponseEntity<Clientes> ApagarCliente(@PathVariable int id, ClientesRequestDTO dto){
-        Clientes clientes = clienteService.ApagarClientePorID(id,dto);
+    public ResponseEntity<Void> ApagarCliente(@PathVariable int id, ClientesRequestDTO dto){
+         clienteService.ApagarClientePorID(id,dto);
 
-        return ResponseEntity.ok(clientes);
+        return ResponseEntity.noContent().build();
     }
 }
