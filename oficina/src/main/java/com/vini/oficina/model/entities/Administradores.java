@@ -1,4 +1,4 @@
-package com.vini.oficina.model.entitys;
+package com.vini.oficina.model.entities;
 
 import jakarta.persistence.*;
 
