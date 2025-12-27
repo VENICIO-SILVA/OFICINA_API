@@ -1,7 +1,7 @@
 package com.vini.oficina.controller;
 
 import com.vini.oficina.dto.request.ClientesRequestDTO;
-import com.vini.oficina.model.entitys.Clientes;
+import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
