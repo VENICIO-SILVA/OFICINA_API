@@ -1,8 +1,9 @@
 package com.vini.oficina.service;
 
 import com.vini.oficina.dto.request.CarrosRequestDTO;
-import com.vini.oficina.model.entitys.Carros;
-import com.vini.oficina.model.entitys.Clientes;
+import com.vini.oficina.dto.response.CarrosResponseDTO;
+import com.vini.oficina.model.entities.Carros;
+import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.repository.CarrosRepositorie;
 import com.vini.oficina.repository.ClienteRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.time.ZoneId;
 
 @Service
 public class CarrosService {
-    //todo Finalizar parametro com DTO
+
     @Autowired
     private CarrosRepositorie carrosRepositorie;
     @Autowired
@@ -37,6 +38,43 @@ public class CarrosService {
 
         carrosRepositorie.save(carros);
 
+
+        return carros;
+    }
+
+    public CarrosResponseDTO ObterCarroPorID(int id) {
+        Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
+        Clientes clientes = new Clientes();
+        clientes = carros.getClientes();
+        CarrosResponseDTO dto = new CarrosResponseDTO();
+
+        dto.setId(carros.getId());
+        dto.setModelo(carros.getModelo());
+        dto.setCor(carros.getCor());
+        dto.setAno(carros.getAno());
+        dto.setPlaca(carros.getPlaca());
+        dto.setIdCliente(carros.getClientes().getId());
+        dto.setNomeCliente(clientes.getNome());
+        dto.setDataCadastro(carros.getData_Cadastro());
+        dto.setDataAtualizacao(carros.getData_Atualizacao());
+
+        return dto;
+    }
+
+    public Carros AtualizarCarro(int id, CarrosRequestDTO dto) {
+        Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
+        carros.setModelo(dto.getModelo());
+        carros.setMarca(dto.getMarca());
+        carros.setAno(dto.getAno());
+        carros.setCor(dto.getCor());
+        carros.setPlaca(dto.getPlaca());
+
+
+        LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
+        carros.setData_Atualizacao(Timestamp.valueOf(agora));
+
+        carrosRepositorie.save(carros);
 
         return carros;
     }
