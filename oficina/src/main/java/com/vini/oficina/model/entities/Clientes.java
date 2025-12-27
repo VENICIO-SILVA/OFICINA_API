@@ -25,6 +25,9 @@ public class Clientes {
 
     private String endereco;
 
+    private Timestamp data_cadastro;
+
+    private Timestamp data_atualizacao;
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
     //evita loop de serialização
@@ -47,9 +50,6 @@ public class Clientes {
         return data_atualizacao;
     }
 
-    private Timestamp data_cadastro;
-
-    private Timestamp data_atualizacao;
 
     public void setData_cadastro(Timestamp data_cadastro) {
         this.data_cadastro = data_cadastro;
