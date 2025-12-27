@@ -1,9 +1,11 @@
-package com.vini.oficina.model.entitys;
+package com.vini.oficina.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Clientes {
@@ -23,6 +25,19 @@ public class Clientes {
 
     private String endereco;
 
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    //evita loop de serialização
+    @JsonManagedReference //lado dono
+    private List<Carros> carros;
+
+    public List<Carros> getCarros() {
+        return carros;
+    }
+
+    public void setCarros(List<Carros> carros) {
+        this.carros = carros;
+    }
 
     public Timestamp getData_cadastro() {
         return data_cadastro;
