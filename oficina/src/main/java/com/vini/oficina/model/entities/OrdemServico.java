@@ -1,107 +1,103 @@
 package com.vini.oficina.model.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "ordens_servico")
+@Entity(name = "ordens_servico")
 public class OrdemServico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_os")
-    private int id;
+    private int Id;
 
-    @Column(name = "numero_os", nullable = false, unique = true, length = 30)
-    private String numeroOS;
+    @Column(length = 255)
+    private String Observacoes;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_cliente", nullable = false)
-    private Clientes cliente;
+    @Column(name = "numero_os", length = 10, nullable = false, unique = true)
+    private String NumeroOS;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "tipo_os", nullable = false)
-    private TipoOrdemServico tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoOrdemServico Tipo;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private StatusOrdemServico status;
+    @Column(name = "status",nullable = false)
+    private StatusOrdemServico Status;
 
-    @CreationTimestamp
-    @Column(name = "data_emissao", updatable = false)
-    private Timestamp dataEmissao;
+    @Column(name = "data_criacao")
+    private Timestamp DataCadastro;
 
-    @UpdateTimestamp
     @Column(name = "data_atualizacao")
-    private Timestamp dataAtualizacao;
+    private Timestamp DataAtualizacao;
 
-    @Column(columnDefinition = "TEXT")
-    private String observacoes;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_cliente")
+    private Clientes clientes;
+
+    public Clientes getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
+    }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNumeroOS() {
-        return numeroOS;
-    }
-
-    public void setNumeroOS(String numeroOS) {
-        this.numeroOS = numeroOS;
-    }
-
-    public Clientes getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
-    }
-
-    public TipoOrdemServico getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoOrdemServico tipo) {
-        this.tipo = tipo;
-    }
-
-    public StatusOrdemServico getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusOrdemServico status) {
-        this.status = status;
-    }
-
-    public Timestamp getDataEmissao() {
-        return dataEmissao;
-    }
-
-    public void setDataEmissao(Timestamp dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
-
-    public Timestamp getDataAtualizacao() {
-        return dataAtualizacao;
-    }
-
-    public void setDataAtualizacao(Timestamp dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
+        Id = id;
     }
 
     public String getObservacoes() {
-        return observacoes;
+        return Observacoes;
     }
 
     public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+        Observacoes = observacoes;
+    }
+
+    public String getNumeroOS() {
+        return NumeroOS;
+    }
+
+    public void setNumeroOS(String numeroOS) {
+        NumeroOS = numeroOS;
+    }
+
+    public TipoOrdemServico getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(TipoOrdemServico tipo) {
+        Tipo = tipo;
+    }
+
+    public StatusOrdemServico getStatus() {
+        return Status;
+    }
+
+    public void setStatus(StatusOrdemServico status) {
+        Status = status;
+    }
+
+    public Timestamp getDataCadastro() {
+        return DataCadastro;
+    }
+
+    public void setDataCadastro(Timestamp dataCadastro) {
+        DataCadastro = dataCadastro;
+    }
+
+    public Timestamp getDataAtualizacao() {
+        return DataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Timestamp dataAtualizacao) {
+        DataAtualizacao = dataAtualizacao;
     }
 }
