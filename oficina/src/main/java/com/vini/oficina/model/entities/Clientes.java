@@ -34,6 +34,17 @@ public class Clientes {
     @JsonManagedReference //lado dono
     private List<Carros> carros;
 
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrdemServico> ordemServico;
+
+    public List<OrdemServico> getOrdemServico() {
+        return ordemServico;
+    }
+
+    public void setOrdemServico(List<OrdemServico> ordemServico) {
+        this.ordemServico = ordemServico;
+    }
+
     public List<Carros> getCarros() {
         return carros;
     }
