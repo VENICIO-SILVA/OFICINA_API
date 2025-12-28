@@ -44,21 +44,21 @@ public class CarrosService {
 
     public CarrosResponseDTO ObterCarroPorID(int id) {
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
-        Clientes clientes = new Clientes();
-        clientes = carros.getClientes();
-        CarrosResponseDTO dto = new CarrosResponseDTO();
+        Clientes clientes = carros.getClientes();
 
-        dto.setId(carros.getId());
-        dto.setModelo(carros.getModelo());
-        dto.setCor(carros.getCor());
-        dto.setAno(carros.getAno());
-        dto.setPlaca(carros.getPlaca());
-        dto.setIdCliente(carros.getClientes().getId());
-        dto.setNomeCliente(clientes.getNome());
-        dto.setDataCadastro(carros.getData_Cadastro());
-        dto.setDataAtualizacao(carros.getData_Atualizacao());
+        CarrosResponseDTO responseDTO = new CarrosResponseDTO();
 
-        return dto;
+        responseDTO.setId(carros.getId());
+        responseDTO.setModelo(carros.getModelo());
+        responseDTO.setCor(carros.getCor());
+        responseDTO.setAno(carros.getAno());
+        responseDTO.setPlaca(carros.getPlaca());
+        responseDTO.setIdCliente(carros.getClientes().getId());
+        responseDTO.setNomeCliente(clientes.getNome());
+        responseDTO.setDataCadastro(carros.getData_Cadastro());
+        responseDTO.setDataAtualizacao(carros.getData_Atualizacao());
+
+        return responseDTO;
     }
 
     public Carros AtualizarCarro(int id, CarrosRequestDTO dto) {
@@ -79,8 +79,8 @@ public class CarrosService {
         return carros;
     }
 
-    public void DeletarCarro(int id, CarrosRequestDTO dto){
-       Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
-       carrosRepositorie.delete(carros);
+    public void DeletarCarro(int id, CarrosRequestDTO dto) {
+        Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
+        carrosRepositorie.delete(carros);
     }
 }
