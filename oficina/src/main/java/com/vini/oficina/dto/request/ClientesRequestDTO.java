@@ -24,9 +24,6 @@ public class ClientesRequestDTO {
 
     private String endereco;
 
-    private Timestamp data_cadastro;
-
-    private Timestamp data_atualizacao;
 
     public String getNome() {
         return nome;
