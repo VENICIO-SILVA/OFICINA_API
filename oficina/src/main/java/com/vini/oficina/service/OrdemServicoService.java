@@ -35,4 +35,22 @@ public class OrdemServicoService {
 
         return ordemServico;
     }
+
+    public OrdemServicoResponseDTO ObterOrdemServico(int id) {
+        OrdemServico ordemServico = ordemServicoRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Ordem nao encontrada"));
+        Clientes clientes = ordemServico.getCliente();
+        OrdemServicoResponseDTO ResponseDTO = new OrdemServicoResponseDTO();
+
+        ResponseDTO.setCliente(clientes.getNome());
+        ResponseDTO.setIdCliente(clientes.getId());
+        ResponseDTO.setStatus(ordemServico.getTipo().toString());
+        ResponseDTO.setTipo(ordemServico.getStatus().toString());
+        ResponseDTO.setID_OS(ordemServico.getId());
+        ResponseDTO.setNumeroOs(ordemServico.getNumeroOS());
+        ResponseDTO.setObservacoes(ordemServico.getObservacoes());
+        ResponseDTO.setDataCadastro(ordemServico.getDataCadastro());
+        ResponseDTO.getDataDeAtualizacao(ordemServico.getDataAtualizacao());
+
+        return ResponseDTO;
+    }
 }
