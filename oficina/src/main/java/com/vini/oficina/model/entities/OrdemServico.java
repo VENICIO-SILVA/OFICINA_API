@@ -1,9 +1,12 @@
 package com.vini.oficina.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity(name = "ordens_servico")
 public class OrdemServico {
@@ -33,11 +36,25 @@ public class OrdemServico {
     @Column(name = "data_atualizacao")
     private Timestamp DataAtualizacao;
 
+    @Column(name = "valor_mao_obra", precision = 10, scale = 2, nullable = false)
+    private BigDecimal maoDeObra;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cliente")
     @JsonBackReference
     private Clientes cliente;
+
+    @OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<OrdemServicoItens> ordemServicoItens;
+
+    public BigDecimal getMaoDeObra() {
+        return maoDeObra;
+    }
+
+    public void setMaoDeObra(BigDecimal maoDeObra) {
+        this.maoDeObra = maoDeObra;
+    }
 
     public Clientes getCliente() {
         return cliente;
