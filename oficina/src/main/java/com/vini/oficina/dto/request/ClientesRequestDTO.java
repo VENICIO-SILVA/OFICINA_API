@@ -16,8 +16,8 @@ public class ClientesRequestDTO {
     @Email
     private String email;
 
-    @NotBlank
-    @CPF(message = "Insira um cpf valido contendo apenas 11 caracteres")
+
+    //todo validação foi removida para teste
     private String cpf;
 
     private String telefone;
