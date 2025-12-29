@@ -1,6 +1,7 @@
 package com.vini.oficina.service;
 
 import com.vini.oficina.dto.request.OrdemServicoRequestDTO;
+import com.vini.oficina.dto.response.OrdemServicoResponseDTO;
 import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.model.entities.OrdemServico;
 import com.vini.oficina.model.entities.StatusOrdemServico;
@@ -20,18 +21,20 @@ public class OrdemServicoService {
     private OrdemServicoRepositorie ordemServicoRepositorie;
     @Autowired
     private ClienteRepositorie clienteRepositorie;
-    public OrdemServico GerarOrdem(int id, OrdemServicoRequestDTO dto){
+
+    public OrdemServico GerarOrdem(int id, OrdemServicoRequestDTO dto) {
         Clientes clientes = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao encontrado"));
         OrdemServico ordemServico = new OrdemServico();
-
+        OrdemServicoResponseDTO ResponseDTO = new OrdemServicoResponseDTO();
         ordemServico.setNumeroOS(dto.getNumeroOs());
         ordemServico.setTipo(TipoOrdemServico.ORÇAMENTO);
         ordemServico.setStatus(StatusOrdemServico.ABERTA);
-        ordemServico.setClientes(clientes);
+        ordemServico.setCliente(clientes);
 
         LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
         ordemServico.setDataCadastro(Timestamp.valueOf(agora));
         ordemServicoRepositorie.save(ordemServico);
+
 
         return ordemServico;
     }
