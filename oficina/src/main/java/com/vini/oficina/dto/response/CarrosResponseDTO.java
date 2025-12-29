@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class CarrosResponseDTO {
 
-    private int id;
+    private int IdCarro;
 
     private String modelo;
 
@@ -47,12 +47,12 @@ public class CarrosResponseDTO {
         DataAtualizacao = dataAtualizacao;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCarro() {
+        return IdCarro;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCarro(int idCarro) {
+        this.IdCarro = idCarro;
     }
 
     public String getModelo() {
