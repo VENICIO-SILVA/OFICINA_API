@@ -10,7 +10,7 @@ public class ClientesRequestDTO {
 
 
     @NotBlank
-    private String nome;
+    private String Nome;
 
     @NotBlank
     @Email
@@ -26,11 +26,11 @@ public class ClientesRequestDTO {
 
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     public String getEmail() {
