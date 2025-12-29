@@ -30,6 +30,7 @@ public class OrdemServicoService {
         ordemServico.setTipo(TipoOrdemServico.ORÇAMENTO);
         ordemServico.setStatus(StatusOrdemServico.ABERTA);
         ordemServico.setCliente(clientes);
+        ordemServico.setMaoDeObra(dto.getMaoDeObra());
 
         LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
         ordemServico.setDataCadastro(Timestamp.valueOf(agora));
@@ -53,6 +54,7 @@ public class OrdemServicoService {
         ResponseDTO.setObservacoes(ordemServico.getObservacoes());
         ResponseDTO.setDataCadastro(ordemServico.getDataCadastro());
         ResponseDTO.getDataDeAtualizacao(ordemServico.getDataAtualizacao());
+        ResponseDTO.setMao_de_obra(ordemServico.getMaoDeObra());
 
         return ResponseDTO;
     }
