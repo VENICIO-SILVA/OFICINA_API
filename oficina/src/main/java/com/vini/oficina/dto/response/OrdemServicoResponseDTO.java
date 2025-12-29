@@ -1,5 +1,6 @@
 package com.vini.oficina.dto.response;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class OrdemServicoResponseDTO {
@@ -21,6 +22,16 @@ public class OrdemServicoResponseDTO {
     private Timestamp DataCadastro;
 
     private Timestamp DataDeAtualizacao;
+
+    private BigDecimal Mao_de_obra;
+
+    public BigDecimal getMao_de_obra() {
+        return Mao_de_obra;
+    }
+
+    public void setMao_de_obra(BigDecimal mao_de_obra) {
+        Mao_de_obra = mao_de_obra;
+    }
 
     public int getID_OS() {
         return ID_OS;
