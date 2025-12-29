@@ -28,13 +28,14 @@ public class Clientes {
     private Timestamp data_cadastro;
 
     private Timestamp data_atualizacao;
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //evita loop de serialização
     @JsonManagedReference //lado dono
     private List<Carros> carros;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<OrdemServico> ordemServico;
 
     public List<OrdemServico> getOrdemServico() {
