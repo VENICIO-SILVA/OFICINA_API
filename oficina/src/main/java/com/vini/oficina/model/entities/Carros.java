@@ -25,7 +25,7 @@ public class Carros {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cliente")
     @JsonBackReference//lado inverso ignorado
-    private Clientes clientes;
+    private Clientes cliente;
 
     //todo atualizar As data para LocalDatetime
     @Column(name = "Data_Cadastro")
@@ -33,8 +33,8 @@ public class Carros {
     @Column(name = "Data_Atualizacao")
     private Timestamp DataAtualizacao;
 
-    public Clientes getClientes() {
-        return clientes;
+    public Clientes getCliente() {
+        return cliente;
     }
 
     public Timestamp getData_Cadastro() {
@@ -54,8 +54,8 @@ public class Carros {
     }
 
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 
     public int getId() {
@@ -73,7 +73,7 @@ public class Carros {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-
+    //todo implementar enum marca
     public String getMarca() {
         return marca;
     }
