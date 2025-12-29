@@ -30,7 +30,7 @@ public class CarrosService {
         carros.setAno(dto.getAno());
         carros.setCor(dto.getCor());
         carros.setPlaca(dto.getPlaca());
-        carros.setClientes(clientes);
+        carros.setCliente(clientes);
 
         LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 
@@ -44,7 +44,7 @@ public class CarrosService {
 
     public CarrosResponseDTO ObterCarroPorID(int id) {
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
-        Clientes clientes = carros.getClientes();
+        Clientes clientes = carros.getCliente();
 
         CarrosResponseDTO responseDTO = new CarrosResponseDTO();
 
@@ -53,7 +53,7 @@ public class CarrosService {
         responseDTO.setCor(carros.getCor());
         responseDTO.setAno(carros.getAno());
         responseDTO.setPlaca(carros.getPlaca());
-        responseDTO.setIdCliente(carros.getClientes().getId());
+        responseDTO.setIdCliente(carros.getCliente().getId());
         responseDTO.setNomeCliente(clientes.getNome());
         responseDTO.setDataCadastro(carros.getData_Cadastro());
         responseDTO.setDataAtualizacao(carros.getData_Atualizacao());
