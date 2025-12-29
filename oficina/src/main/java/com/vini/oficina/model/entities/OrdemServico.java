@@ -1,5 +1,6 @@
 package com.vini.oficina.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -35,14 +36,15 @@ public class OrdemServico {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cliente")
-    private Clientes clientes;
+    @JsonBackReference
+    private Clientes cliente;
 
-    public Clientes getClientes() {
-        return clientes;
+    public Clientes getCliente() {
+        return cliente;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 
     public int getId() {
