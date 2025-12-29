@@ -2,10 +2,6 @@ package com.vini.oficina.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jdk.jfr.Name;
-import org.hibernate.validator.constraints.br.CPF;
-import java.sql.Timestamp;
-
 public class ClientesRequestDTO {
 
 
