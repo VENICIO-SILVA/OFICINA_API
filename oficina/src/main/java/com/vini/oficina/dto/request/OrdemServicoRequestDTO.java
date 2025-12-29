@@ -2,6 +2,7 @@ package com.vini.oficina.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class OrdemServicoRequestDTO {
@@ -14,6 +15,17 @@ public class OrdemServicoRequestDTO {
     private Timestamp DataCadastro;
 
     private Timestamp DataAtualizacao;
+
+    @NotBlank
+    private BigDecimal maoDeObra;
+
+    public BigDecimal getMaoDeObra() {
+        return maoDeObra;
+    }
+
+    public void setMaoDeObra(BigDecimal maoDeObra) {
+        this.maoDeObra = maoDeObra;
+    }
 
     public Timestamp getDataCadastro() {
         return DataCadastro;
