@@ -79,7 +79,7 @@ public class CarrosService {
         return carros;
     }
 
-    public void DeletarCarro(int id, CarrosRequestDTO dto) {
+    public void DeletarCarro(int id) {
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
         carrosRepositorie.delete(carros);
     }
