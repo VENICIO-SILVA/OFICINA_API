@@ -25,9 +25,9 @@ public class CarrosController {
 
     @GetMapping("ObterCarro/{id}")
     public ResponseEntity<CarrosResponseDTO> ObterCarrosPorID(@PathVariable int id){
-        CarrosResponseDTO car = carrosService.ObterCarroPorID(id);
+        CarrosResponseDTO responseDTO = carrosService.ObterCarroPorID(id);
 
-        return ResponseEntity.ok(car);
+        return ResponseEntity.ok(responseDTO);
     }
     //todo Atualizar ResponseDTO
     @PutMapping("/AtualizarCarro/{id}")
@@ -38,8 +38,8 @@ public class CarrosController {
     }
 
     @DeleteMapping("/ApagarCarro/{id}")
-    public ResponseEntity<Void> DeletarCarro(@PathVariable int id,  CarrosRequestDTO dto){
-        carrosService.DeletarCarro(id, dto);
+    public ResponseEntity<Void> DeletarCarro(@PathVariable int id){
+        carrosService.DeletarCarro(id);
 
         return ResponseEntity.noContent().build();
     }
