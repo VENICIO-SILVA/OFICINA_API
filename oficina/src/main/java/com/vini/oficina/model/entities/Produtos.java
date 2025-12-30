@@ -1,9 +1,11 @@
 package com.vini.oficina.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -22,7 +24,30 @@ public class Produtos {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnore
     private List<OrdemServicoItens> ordemServicoItens;
+
+    @Column(name = "data_cadastro", nullable = false)
+    private Timestamp DataCadastro;
+
+    @Column(name = "data_atualizacao", nullable = false)
+    private Timestamp DataAtualizacao;
+
+    public Timestamp getDataCadastro() {
+        return DataCadastro;
+    }
+
+    public void setDataCadastro(Timestamp dataCadastro) {
+        DataCadastro = dataCadastro;
+    }
+
+    public Timestamp getDataAtualizacao() {
+        return DataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Timestamp dataAtualizacao) {
+        DataAtualizacao = dataAtualizacao;
+    }
 
     public List<OrdemServicoItens> getOrdemServicoItens() {
         return ordemServicoItens;
