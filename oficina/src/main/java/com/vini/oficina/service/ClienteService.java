@@ -38,7 +38,7 @@ public class ClienteService {
         return clienteRepositorie.save(cliente);
     }
 
-    //todo corrigir LAZY
+    //todo corrigir LAZY deve retornar responseDTO configurar
     public Clientes ObterClientePorId(int id) {
         Clientes cliente = clienteRepositorie.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
