@@ -48,6 +48,14 @@ public class OrdemServico {
     @JsonManagedReference
     private List<OrdemServicoItens> ordemServicoItens;
 
+    public List<OrdemServicoItens> getOrdemServicoItens() {
+        return ordemServicoItens;
+    }
+
+    public void setOrdemServicoItens(List<OrdemServicoItens> ordemServicoItens) {
+        this.ordemServicoItens = ordemServicoItens;
+    }
+
     public BigDecimal getMaoDeObra() {
         return maoDeObra;
     }
