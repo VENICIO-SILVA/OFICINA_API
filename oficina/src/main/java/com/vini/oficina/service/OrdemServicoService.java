@@ -22,6 +22,9 @@ public class OrdemServicoService {
     @Autowired
     private ClienteRepositorie clienteRepositorie;
 
+    @Autowired
+    private OrdemItemRepositorie ordemItemRepositorie;
+
     public OrdemServico GerarOrdem(int id, OrdemServicoRequestDTO dto) {
         Clientes clientes = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente nao encontrado"));
         OrdemServico ordemServico = new OrdemServico();
