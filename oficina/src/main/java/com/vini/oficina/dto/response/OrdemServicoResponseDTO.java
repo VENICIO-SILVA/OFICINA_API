@@ -2,47 +2,28 @@ package com.vini.oficina.dto.response;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class OrdemServicoResponseDTO {
 
-    private int ID_OS;
-
+    private int idOS;
     private String cliente;
-
-    private int IdCliente;
-
+    private int idCliente;
     private String observacoes;
+    private String numeroOs;
+    private String tipo;
+    private String status;
+    private Timestamp dataCadastro;
+    private Timestamp dataDeAtualizacao;
+    private BigDecimal maoDeObra;
+    private List<OrdemItemResponseDTO> items;
 
-    private String NumeroOs;
-
-    private String Tipo;
-
-    private String Status;
-
-    private Timestamp DataCadastro;
-
-    private Timestamp DataDeAtualizacao;
-
-    private BigDecimal Mao_de_obra;
-
-    public BigDecimal getMao_de_obra() {
-        return Mao_de_obra;
+    public int getIdOS() {
+        return idOS;
     }
 
-    public void setMao_de_obra(BigDecimal mao_de_obra) {
-        Mao_de_obra = mao_de_obra;
-    }
-
-    public int getID_OS() {
-        return ID_OS;
-    }
-
-    public void setID_OS(int ID_OS) {
-        this.ID_OS = ID_OS;
-    }
-
-    public Timestamp getDataDeAtualizacao() {
-        return DataDeAtualizacao;
+    public void setIdOS(int idOS) {
+        this.idOS = idOS;
     }
 
     public String getCliente() {
@@ -54,11 +35,11 @@ public class OrdemServicoResponseDTO {
     }
 
     public int getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
     public void setIdCliente(int idCliente) {
-        IdCliente = idCliente;
+        this.idCliente = idCliente;
     }
 
     public String getObservacoes() {
@@ -70,42 +51,58 @@ public class OrdemServicoResponseDTO {
     }
 
     public String getNumeroOs() {
-        return NumeroOs;
+        return numeroOs;
     }
 
     public void setNumeroOs(String numeroOs) {
-        NumeroOs = numeroOs;
+        this.numeroOs = numeroOs;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setTipo(String tipo) {
-        Tipo = tipo;
+        this.tipo = tipo;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public Timestamp getDataCadastro() {
-        return DataCadastro;
+        return dataCadastro;
     }
 
     public void setDataCadastro(Timestamp dataCadastro) {
-        DataCadastro = dataCadastro;
+        this.dataCadastro = dataCadastro;
     }
 
-    public Timestamp getDataDeAtualizacao(Timestamp dataAtualizacao) {
-        return DataDeAtualizacao;
+    public Timestamp getDataDeAtualizacao() {
+        return dataDeAtualizacao;
     }
 
     public void setDataDeAtualizacao(Timestamp dataDeAtualizacao) {
-        DataDeAtualizacao = dataDeAtualizacao;
+        this.dataDeAtualizacao = dataDeAtualizacao;
+    }
+
+    public BigDecimal getMaoDeObra() {
+        return maoDeObra;
+    }
+
+    public void setMaoDeObra(BigDecimal maoDeObra) {
+        this.maoDeObra = maoDeObra;
+    }
+
+    public List<OrdemItemResponseDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrdemItemResponseDTO> items) {
+        this.items = items;
     }
 }
