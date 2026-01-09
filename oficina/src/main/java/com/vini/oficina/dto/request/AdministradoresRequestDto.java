@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 //antes de passar para o service e persistir no banco
 public class AdministradoresRequestDto {
 
-    @NotBlank()
+    @NotBlank
     private String nome;
 
     private String telefone;
