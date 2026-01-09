@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+//todo Refator todos as chamadas  HTTP para response
 @RestController
 @RequestMapping("/Administradores")
 public class AdministradoresController {
@@ -54,6 +56,3 @@ public class AdministradoresController {
         }
     }
 
-    //todo criar get adm para amostra de usuario logado na tela!
-
-}
