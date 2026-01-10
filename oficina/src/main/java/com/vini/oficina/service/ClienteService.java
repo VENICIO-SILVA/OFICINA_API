@@ -62,7 +62,7 @@ public class ClienteService {
         return clienteExistente;
     }
 
-    public void ApagarClientePorID(int id, ClientesRequestDTO dto) {
+    public void ApagarClientePorID(int id) {
         Clientes DeletCliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente Nao existe"));
         clienteRepositorie.delete(DeletCliente);
     }
