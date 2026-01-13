@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class ClienteService {
@@ -38,13 +39,17 @@ public class ClienteService {
         return clienteRepositorie.save(cliente);
     }
 
-    //todo corrigir LAZY deve retornar responseDTO configurar
-    public Clientes ObterClientePorId(int id) {
-        Clientes cliente = clienteRepositorie.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        cliente.getCarros().size();
 
-        return cliente;
+    public List<Clientes> ObterClientePorId(String nome, Integer id) {
+        if (id != null) {
+            return clienteRepositorie.findById(id)
+                    .map(List::of)
+                    .orElse(List.of());
+        }
+        if (nome != null && !nome.isEmpty()) {
+            return clienteRepositorie.findByNomeContainingIgnoreCase(nome);
+        }
+        return clienteRepositorie.findAll();
 
     }
 
