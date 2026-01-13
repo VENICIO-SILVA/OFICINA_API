@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Cliente")
 public class ClienteController {
@@ -21,10 +23,10 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
-    @GetMapping("ObterClientePorID/{id}")
-    public ResponseEntity<Clientes> ObterClientePorId(@Valid @PathVariable int id){
-        Clientes clientes = clienteService.ObterClientePorId(id);
-        return ResponseEntity.ok(clientes);
+    @GetMapping("/BuscarCliente/")
+    public ResponseEntity<List<Clientes>> ObterClientePorId(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
+        List<Clientes> lista  = clienteService.ObterClientePorId(nome, id);
+        return ResponseEntity.ok(lista);
     }
 
     @PatchMapping("/AlterarDadosCliente/{id}")
