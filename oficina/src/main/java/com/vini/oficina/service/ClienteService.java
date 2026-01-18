@@ -1,6 +1,7 @@
 package com.vini.oficina.service;
 
 import com.vini.oficina.dto.request.ClientesRequestDTO;
+import com.vini.oficina.dto.response.ClienteResponseDTO;
 import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.repository.CarrosRepositorie;
 import com.vini.oficina.repository.ClienteRepositorie;
@@ -53,18 +54,27 @@ public class ClienteService {
 
     }
 
-    public Clientes AlterarClientePorID(int id, ClientesRequestDTO dto) {
-        Clientes clienteExistente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
-        clienteExistente.setNome(dto.getNome());
-        clienteExistente.setEmail(dto.getEmail());
-        clienteExistente.setCpf(dto.getCpf());
-        clienteExistente.setTelefone(dto.getTelefone());
-        clienteExistente.setEndereco(dto.getEndereco());
-        LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
-        clienteExistente.setData_atualizacao(Timestamp.valueOf(agora));
+    public ClienteResponseDTO AlterarClientePorID(int id, ClientesRequestDTO dto) {
+        Clientes cliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
+        ClienteResponseDTO RespondeDTO = new ClienteResponseDTO();
 
-        clienteRepositorie.save(clienteExistente);
-        return clienteExistente;
+        cliente.setNome(dto.getNome());
+        cliente.setEmail(dto.getEmail());
+        cliente.setCpf(dto.getCpf());
+        cliente.setTelefone(dto.getTelefone());
+        cliente.setEndereco(dto.getEndereco());
+        LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+        cliente.setData_atualizacao(Timestamp.valueOf(agora));
+
+        clienteRepositorie.save(cliente);
+
+        RespondeDTO.setNome(cliente.getNome());
+        RespondeDTO.setNome(cliente.getEmail());
+        RespondeDTO.setNome(cliente.getCpf());
+        RespondeDTO.setNome(cliente.getTelefone());
+        RespondeDTO.setNome(cliente.getEndereco());
+        RespondeDTO.setNome(cliente.getData_atualizacao().toString());
+        return RespondeDTO;
     }
 
     public void ApagarClientePorID(int id) {
