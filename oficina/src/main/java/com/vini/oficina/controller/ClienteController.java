@@ -1,6 +1,7 @@
 package com.vini.oficina.controller;
 
 import com.vini.oficina.dto.request.ClientesRequestDTO;
+import com.vini.oficina.dto.response.ClienteResponseDTO;
 import com.vini.oficina.model.entities.Clientes;
 import com.vini.oficina.service.ClienteService;
 import jakarta.validation.Valid;
@@ -30,9 +31,9 @@ public class ClienteController {
         return ResponseEntity.ok(lista);
     }
     //todo Alterar para devolver response
-    @PatchMapping("/AlterarDadosCliente/{id}")
-    public ResponseEntity<Clientes> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
-        Clientes cliente = clienteService.AlterarClientePorID(id, dto);
+    @PutMapping("/Editar/{id}")
+    public ResponseEntity<ClienteResponseDTO> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
+        ClienteResponseDTO cliente = clienteService.AlterarClientePorID(id, dto);
 
         return ResponseEntity.ok(cliente);
     }
