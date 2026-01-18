@@ -16,19 +16,20 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/CadastrarCliente")
+    //todo Alterar para devolver response
+    @PostMapping("/Cadastrar")
     public ResponseEntity<Clientes> CadastrarCliente(@Valid @RequestBody ClientesRequestDTO dto) {
         Clientes cliente = clienteService.CadastrarCliente(dto);
 
         return ResponseEntity.ok(cliente);
     }
-
+    //todo Alterar para devolver response
     @GetMapping("/BuscarCliente/")
     public ResponseEntity<List<Clientes>> ObterClientePorId(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
         List<Clientes> lista  = clienteService.ObterClientePorId(nome, id);
         return ResponseEntity.ok(lista);
     }
-
+    //todo Alterar para devolver response
     @PatchMapping("/AlterarDadosCliente/{id}")
     public ResponseEntity<Clientes> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
         Clientes cliente = clienteService.AlterarClientePorID(id, dto);

@@ -21,6 +21,7 @@ public class AdministradoresController {
     @Autowired
     private AdministradoresService administradoresService;
 
+    //todo Alterar para devolver response
     @PostMapping("/Cadastrar")                            //@Valid ativa as validações do DTO//RequestBody diz que recebe JSON inseridor no corpo da requisição ou seja dados via JSON
     public ResponseEntity<Administradores> CadastrarAdministrador(@Valid @RequestBody AdministradoresRequestDto dto) {
         //As informações chegam Atraves da requisição o DTO recebe ela no parametro acima "dto" roda toda verificação @valid
@@ -37,6 +38,7 @@ public class AdministradoresController {
 
         return ResponseEntity.ok(adm);
     }
+    //todo Alterar para devolver response
     @GetMapping("/BuscarUsuario/")
     public ResponseEntity<List<Administradores>> BuscarAdministrador(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id) {
 

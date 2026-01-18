@@ -16,6 +16,7 @@ public class OrdemServicoController {
     @Autowired
     private OrdemServicoService ordemServicoService;
 
+    //todo Alterar para devolver response
     @PostMapping("/GerarOrdem/{id}")
     public ResponseEntity<OrdemServico> GerarOrdem(@PathVariable int id, @Valid @RequestBody OrdemServicoRequestDTO dto){
         OrdemServico ordemServico = ordemServicoService.GerarOrdem(id, dto);
