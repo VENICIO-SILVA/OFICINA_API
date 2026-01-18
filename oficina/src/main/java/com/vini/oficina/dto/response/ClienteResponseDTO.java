@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ClienteResponseDTO {
     private Integer id;
-    private String nome;
+    private String Nome;
     private String email;
     private String telefone;
     private String endereco;
@@ -24,11 +24,11 @@ public class ClienteResponseDTO {
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     public String getEmail() {
