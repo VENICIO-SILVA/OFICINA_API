@@ -29,7 +29,6 @@ public class ClienteController {
         List<Clientes> lista  = clienteService.ObterClientePorId(nome, id);
         return ResponseEntity.ok(lista);
     }
-    //todo Alterar para devolver response
     @PutMapping("/Editar/{id}")
     public ResponseEntity<ClienteResponseDTO> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
         ClienteResponseDTO cliente = clienteService.AlterarClientePorID(id, dto);
