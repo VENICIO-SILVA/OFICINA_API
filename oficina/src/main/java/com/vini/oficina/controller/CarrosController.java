@@ -31,9 +31,9 @@ public class CarrosController {
         return ResponseEntity.ok(responseDTO);
     }
     //todo Atualizar ResponseDTO
-    @PutMapping("/AtualizarCarro/{id}")
-    public ResponseEntity<Carros> AtualizarCarros(@PathVariable int id, @Valid @RequestBody CarrosRequestDTO dto ){
-        Carros carros = carrosService.AtualizarCarro(id, dto);
+    @PutMapping("/Editar/{id}")
+    public ResponseEntity<CarrosResponseDTO> AtualizarCarros(@PathVariable int id, @Valid @RequestBody CarrosRequestDTO dto ){
+        CarrosResponseDTO carros = carrosService.AtualizarCarro(id, dto);
 
         return ResponseEntity.ok(carros);
     }
