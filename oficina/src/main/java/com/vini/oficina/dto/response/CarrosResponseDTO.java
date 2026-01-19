@@ -9,6 +9,8 @@ public class CarrosResponseDTO {
 
     private String modelo;
 
+    private String marca;
+
     private String cor;
 
     private int ano;
