@@ -49,13 +49,23 @@ public class CarrosService {
         CarrosResponseDTO responseDTO = new CarrosResponseDTO();
 
         responseDTO.setIdCarro(carros.getId());
+
         responseDTO.setModelo(carros.getModelo());
+
+        responseDTO.setMarca(carros.getMarca());
+
         responseDTO.setCor(carros.getCor());
+
         responseDTO.setAno(carros.getAno());
+
         responseDTO.setPlaca(carros.getPlaca());
+
         responseDTO.setIdCliente(carros.getCliente().getId());
+
         responseDTO.setNomeCliente(clientes.getNome());
+
         responseDTO.setDataCadastro(carros.getData_Cadastro());
+
         responseDTO.setDataAtualizacao(carros.getData_Atualizacao());
 
         return responseDTO;
