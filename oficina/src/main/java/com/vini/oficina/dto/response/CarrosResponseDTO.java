@@ -25,6 +25,14 @@ public class CarrosResponseDTO {
 
     private Timestamp DataAtualizacao;
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     public Timestamp getDataCadastro() {
         return DataCadastro;
     }
