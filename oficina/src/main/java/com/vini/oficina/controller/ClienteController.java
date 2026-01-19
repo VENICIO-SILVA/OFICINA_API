@@ -24,7 +24,6 @@ public class ClienteController {
 
         return ResponseEntity.ok(cliente);
     }
-    //todo Alterar para devolver response
     @GetMapping("/BuscarCliente/")
     public ResponseEntity<List<Clientes>> ObterClientePorId(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
         List<Clientes> lista  = clienteService.ObterClientePorId(nome, id);
