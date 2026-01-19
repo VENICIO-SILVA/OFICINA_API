@@ -71,7 +71,7 @@ public class CarrosService {
         return responseDTO;
     }
 
-    public Carros AtualizarCarro(int id, CarrosRequestDTO dto) {
+    public CarrosResponseDTO AtualizarCarro(int id, CarrosRequestDTO dto) {
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
         CarrosResponseDTO responseDTO = new CarrosResponseDTO();
         carros.setModelo(dto.getModelo());
@@ -91,7 +91,7 @@ public class CarrosService {
 
         carrosRepositorie.save(carros);
 
-        return carros;
+        return responseDTO;
     }
 
     public void DeletarCarro(int id) {
