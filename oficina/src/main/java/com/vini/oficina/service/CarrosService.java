@@ -73,16 +73,21 @@ public class CarrosService {
 
     public Carros AtualizarCarro(int id, CarrosRequestDTO dto) {
         Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
+        CarrosResponseDTO responseDTO = new CarrosResponseDTO();
         carros.setModelo(dto.getModelo());
         carros.setMarca(dto.getMarca());
         carros.setAno(dto.getAno());
         carros.setCor(dto.getCor());
         carros.setPlaca(dto.getPlaca());
-
-
         LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
-
         carros.setData_Atualizacao(Timestamp.valueOf(agora));
+
+        responseDTO.setModelo(carros.getModelo());
+        responseDTO.setMarca(carros.getMarca());
+        responseDTO.setAno(carros.getAno());
+        responseDTO.setCor(carros.getCor());
+        responseDTO.setPlaca(carros.getPlaca());
+
 
         carrosRepositorie.save(carros);
 
