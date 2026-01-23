@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public class CarrosRequestDTO {
     private int id;
 
-    @NotBlank(message = "Obrigatorio")
+    @NotBlank(message = "Informe o modelo do arro e Obrigatorio")
     private String modelo;
 
     private String marca;
