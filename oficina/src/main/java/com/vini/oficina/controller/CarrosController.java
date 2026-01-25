@@ -18,7 +18,7 @@ public class CarrosController {
     private CarrosService carrosService;
 
     //todo Alterar para devolver response
-    @PostMapping("/CadastrarCarro/{id}")
+    @PostMapping("/Cadastrar/{id}")
     public ResponseEntity<Carros> CadastrarCarro(@PathVariable int id, @RequestBody CarrosRequestDTO dto){
         Carros car = carrosService.CadastrarCarros(id, dto);
 

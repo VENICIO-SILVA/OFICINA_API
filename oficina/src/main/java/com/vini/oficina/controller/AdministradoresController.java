@@ -32,7 +32,7 @@ public class AdministradoresController {
         return ResponseEntity.ok(adm);
     }
     @PostMapping("/Login")
-    //Usado aqui um login separado apenas para login
+    //Usado aqui um loginRequestDTO separado apenas para login
     public ResponseEntity<Administradores> Login(@Valid @RequestBody LoginRequestDTO dto){
         Administradores adm = administradoresService.Login(dto);
 
