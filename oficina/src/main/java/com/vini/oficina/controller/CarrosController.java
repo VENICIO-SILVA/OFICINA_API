@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/Carros")
@@ -25,11 +26,11 @@ public class CarrosController {
         return ResponseEntity.ok(car);
     }
 
-    @GetMapping("ObterCarro/{id}")
-    public ResponseEntity<CarrosResponseDTO> ObterCarrosPorID(@PathVariable int id){
-        CarrosResponseDTO responseDTO = carrosService.ObterCarroPorID(id);
+    @GetMapping("ObterCarro/")
+    public ResponseEntity<List<Carros>>  ObterCarros(@RequestParam(required = false) Integer id, @RequestParam(required = false) String Marca){
+       List<Carros> Lista  = carrosService.ObterCarros(id, Marca);
 
-        return ResponseEntity.ok(responseDTO);
+        return ResponseEntity.ok(Lista);
     }
     //todo Atualizar ResponseDTO
     @PutMapping("/Editar/{id}")
