@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class CarrosService {
@@ -42,33 +43,16 @@ public class CarrosService {
         return carros;
     }
 
-    public CarrosResponseDTO ObterCarroPorID(int id) {
-        Carros carros = carrosRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Carro nao encontrado"));
-        Clientes clientes = carros.getCliente();
-
-        CarrosResponseDTO responseDTO = new CarrosResponseDTO();
-
-        responseDTO.setIdCarro(carros.getId());
-
-        responseDTO.setModelo(carros.getModelo());
-
-        responseDTO.setMarca(carros.getMarca());
-
-        responseDTO.setCor(carros.getCor());
-
-        responseDTO.setAno(carros.getAno());
-
-        responseDTO.setPlaca(carros.getPlaca());
-
-        responseDTO.setIdCliente(carros.getCliente().getId());
-
-        responseDTO.setNomeCliente(clientes.getNome());
-
-        responseDTO.setDataCadastro(carros.getData_Cadastro());
-
-        responseDTO.setDataAtualizacao(carros.getData_Atualizacao());
-
-        return responseDTO;
+    public List<Carros> ObterCarros(Integer id, String marca) {
+        if (id != null) {
+            return carrosRepositorie.findById(id)
+                    .map(List::of)
+                    .orElse(List.of());
+        }
+        if (marca != null && !marca.isEmpty()) {
+            return carrosRepositorie.findByMarcaContainingIgnoreCase(marca);
+        }
+        return carrosRepositorie.findAll();
     }
 
     public CarrosResponseDTO AtualizarCarro(int id, CarrosRequestDTO dto) {
