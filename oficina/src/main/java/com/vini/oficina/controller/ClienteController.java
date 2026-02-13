@@ -25,20 +25,20 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
     @GetMapping("/BuscarCliente/")
-    public ResponseEntity<List<Clientes>> ObterClientePorId(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
-        List<Clientes> lista  = clienteService.ObterClientePorId(nome, id);
+    public ResponseEntity<List<Clientes>> ObterClientePorId(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id) {
+        List<Clientes> lista = clienteService.ObterClientePorId(nome, id);
         return ResponseEntity.ok(lista);
     }
     @PutMapping("/Editar/{id}")
-    public ResponseEntity<ClienteResponseDTO> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto){
+    public ResponseEntity<ClienteResponseDTO> AlterarDadosCliente(@PathVariable int id, @Valid @RequestBody ClientesRequestDTO dto) {
         ClienteResponseDTO cliente = clienteService.AlterarClientePorID(id, dto);
 
         return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/ApagarCliente/{id}")
-    public ResponseEntity<Void> ApagarCliente(@PathVariable int id){
-         clienteService.ApagarClientePorID(id);
+    public ResponseEntity<Void> ApagarCliente(@PathVariable int id) {
+        clienteService.ApagarClientePorID(id);
 
         return ResponseEntity.noContent().build();
     }
