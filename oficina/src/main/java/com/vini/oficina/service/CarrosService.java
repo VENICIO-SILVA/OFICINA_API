@@ -42,17 +42,24 @@ public class CarrosService {
 
         return carros;
     }
-
-    public List<Carros> ObterCarros(Integer id, String marca) {
+    public List<CarrosResponseDTO> ObterCarros(Integer id, String marca) {
         if (id != null) {
             return carrosRepositorie.findById(id)
-                    .map(List::of)
+                    .map(carro -> List.of(new CarrosResponseDTO(carro)))
                     .orElse(List.of());
         }
+
         if (marca != null && !marca.isEmpty()) {
-            return carrosRepositorie.findByMarcaContainingIgnoreCase(marca);
+            return carrosRepositorie.findByMarcaContainingIgnoreCase(marca)
+                    .stream()
+                    .map(CarrosResponseDTO::new) // usa o construtor que recebe Carros
+                    .toList();
         }
-        return carrosRepositorie.findAll();
+
+        return carrosRepositorie.findAll()
+                .stream()
+                .map(CarrosResponseDTO::new) // converte todos para DTO
+                .toList();
     }
 
     public CarrosResponseDTO AtualizarCarro(int id, CarrosRequestDTO dto) {
