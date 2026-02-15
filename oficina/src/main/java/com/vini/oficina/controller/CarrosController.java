@@ -27,8 +27,8 @@ public class CarrosController {
     }
 
     @GetMapping("ObterCarro/")
-    public ResponseEntity<List<Carros>>  ObterCarros(@RequestParam(required = false) Integer id, @RequestParam(required = false) String Marca){
-       List<Carros> Lista  = carrosService.ObterCarros(id, Marca);
+    public ResponseEntity<List<CarrosResponseDTO>>  ObterCarros(@RequestParam(required = false) Integer id, @RequestParam(required = false) String Marca){
+       List<CarrosResponseDTO> Lista  = carrosService.ObterCarros(id, Marca);
 
         return ResponseEntity.ok(Lista);
     }
