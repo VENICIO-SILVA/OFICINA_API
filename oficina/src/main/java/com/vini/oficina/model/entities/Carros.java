@@ -1,6 +1,7 @@
 package com.vini.oficina.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -24,8 +25,9 @@ public class Carros {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cliente")
-    @JsonBackReference//lado inverso ignorado
+    @JsonIgnoreProperties("carros") // evita loop infinito
     private Clientes cliente;
+
 
     //todo atualizar As data para LocalDatetime
     @Column(name = "Data_Cadastro")
