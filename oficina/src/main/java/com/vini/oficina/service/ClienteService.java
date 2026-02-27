@@ -3,7 +3,6 @@ package com.vini.oficina.service;
 import com.vini.oficina.dto.request.ClientesRequestDTO;
 import com.vini.oficina.dto.response.ClienteResponseDTO;
 import com.vini.oficina.model.entities.Clientes;
-import com.vini.oficina.repository.CarrosRepositorie;
 import com.vini.oficina.repository.ClienteRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,73 +11,73 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
+
     @Autowired
     private ClienteRepositorie clienteRepositorie;
 
-    @Autowired
-    private CarrosRepositorie carrosRepositorie;
-
-    public Clientes CadastrarCliente(ClientesRequestDTO dto) {
+    // ✅ Cadastrar Cliente já retorna DTO
+    public ClienteResponseDTO cadastrarCliente(ClientesRequestDTO dto) {
         if (clienteRepositorie.existsByEmail(dto.getEmail())) {
-            System.out.println("Email ja Existente");
+            throw new RuntimeException("Email já existente");
         }
-        Clientes cliente = new Clientes();
 
+        Clientes cliente = new Clientes();
         cliente.setNome(dto.getNome());
         cliente.setEmail(dto.getEmail());
         cliente.setCpf(dto.getCpf());
         cliente.setTelefone(dto.getTelefone());
         cliente.setEndereco(dto.getEndereco());
+        cliente.setData_cadastro(new Timestamp(System.currentTimeMillis()));
 
-        Timestamp HoraAtual = new Timestamp(System.currentTimeMillis());
+        cliente = clienteRepositorie.save(cliente);
 
-        cliente.setData_cadastro(HoraAtual);
-
-        return clienteRepositorie.save(cliente);
+        return new ClienteResponseDTO(cliente);
     }
 
+    // ✅ Buscar Cliente por ID ou Nome retorna DTO
+    public List<ClienteResponseDTO> obterClientePorId(String nome, Integer id) {
+        List<Clientes> clientes;
 
-    public List<Clientes> ObterClientePorId(String nome, Integer id) {
         if (id != null) {
-            return clienteRepositorie.findById(id)
+            clientes = clienteRepositorie.findById(id)
                     .map(List::of)
                     .orElse(List.of());
+        } else if (nome != null && !nome.isEmpty()) {
+            clientes = clienteRepositorie.findByNomeContainingIgnoreCase(nome);
+        } else {
+            clientes = clienteRepositorie.findAll();
         }
-        if (nome != null && !nome.isEmpty()) {
-            return clienteRepositorie.findByNomeContainingIgnoreCase(nome);
-        }
-        return clienteRepositorie.findAll();
 
+        return clientes.stream()
+                .map(ClienteResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
-    public ClienteResponseDTO AlterarClientePorID(int id, ClientesRequestDTO dto) {
-        Clientes cliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente não existe"));
-        ClienteResponseDTO RespondeDTO = new ClienteResponseDTO();
+
+    public ClienteResponseDTO alterarClientePorID(int id, ClientesRequestDTO dto) {
+        Clientes cliente = clienteRepositorie.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não existe"));
 
         cliente.setNome(dto.getNome());
         cliente.setEmail(dto.getEmail());
         cliente.setCpf(dto.getCpf());
         cliente.setTelefone(dto.getTelefone());
         cliente.setEndereco(dto.getEndereco());
-        LocalDateTime agora = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
-        cliente.setData_atualizacao(Timestamp.valueOf(agora));
+        cliente.setData_atualizacao(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("America/Sao_Paulo"))));
 
-        clienteRepositorie.save(cliente);
+        cliente = clienteRepositorie.save(cliente);
 
-        RespondeDTO.setNome(cliente.getNome());
-        RespondeDTO.setNome(cliente.getEmail());
-        RespondeDTO.setNome(cliente.getCpf());
-        RespondeDTO.setNome(cliente.getTelefone());
-        RespondeDTO.setNome(cliente.getEndereco());
-        RespondeDTO.setNome(cliente.getData_atualizacao().toString());
-        return RespondeDTO;
+        return new ClienteResponseDTO(cliente);
     }
 
-    public void ApagarClientePorID(int id) {
-        Clientes DeletCliente = clienteRepositorie.findById(id).orElseThrow(() -> new RuntimeException("Cliente Nao existe"));
-        clienteRepositorie.delete(DeletCliente);
+    // ✅ Apagar Cliente
+    public void apagarClientePorID(int id) {
+        Clientes cliente = clienteRepositorie.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não existe"));
+        clienteRepositorie.delete(cliente);
     }
 }
